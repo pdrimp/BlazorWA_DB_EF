@@ -8,5 +8,6 @@ namespace Catalogo.Modelos
         {
         }
         public DbSet<Persona> Personas { get; set; }
+        public DbSet<Clasificacion> Clasificaciones { get; set; }
     }
 }

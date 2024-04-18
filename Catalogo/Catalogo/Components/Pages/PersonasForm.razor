@@ -27,6 +27,19 @@
             <ValidationMessage For="()=>_persona.Telefono" />
         </div>
     </div>
+    <div class="row mb-3">
+        <label for="txtClasificacion" class="col-2 col-form-label">Clasificación</label>
+        <div class="col-10">
+            <InputSelect class="form-select" @bind-Value="_persona.ClasificacionId">
+                <option value="0" disabled="disabled">Seleccione clasificación...</option>
+                @foreach (Clasificacion clasificacion in _clasificaciones)
+                {
+                    <option value="@clasificacion.Id">@clasificacion.Nombre</option>
+                }
+            </InputSelect>
+            <ValidationMessage For="()=>_persona.Telefono" />
+        </div>
+    </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
     <button class="btn btn-danger ms-3" @onclick="Cancelar" @onclick:preventDefault>Cancelar</button>
 </EditForm>
@@ -36,9 +49,11 @@
     public int Id { get; set; }
     private string _mensaje = "";
     private Persona? _persona = new();
+    private List<Clasificacion> _clasificaciones = new();
 
     protected override async Task OnInitializedAsync()
     {
+        _clasificaciones = await _repositorio.GetClasificaciones();
         if (Id > 0)
         {
             _persona = await _repositorio.Get(Id);

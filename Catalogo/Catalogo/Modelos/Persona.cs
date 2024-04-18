@@ -15,5 +15,9 @@ namespace Catalogo.Modelos
         [Required(ErrorMessage = "El teléfono es requerido")]
         [StringLength(10, ErrorMessage = "Máximo 10 caracteres")]
         public string? Telefono { get; set; }
+
+        //Propiedades de navegación EF
+        public int ClasificacionId { get; set; }
+        virtual public Clasificacion? Clasificacion { get; set; }
     }
 }

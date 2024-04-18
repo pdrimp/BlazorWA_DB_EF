@@ -1,5 +1,6 @@
 ﻿@page "/personas"
 @rendermode InteractiveServer
+@attribute [StreamRendering]
 @inject NavigationManager _navigator;
 @inject IRepositorioPersonas _repositorio;
 <h3>Personas</h3>
@@ -22,6 +23,7 @@ else
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Teléfono</th>
+                <th>Clasificación</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -32,6 +34,7 @@ else
                     <td>@persona.Nombre</td>
                     <td>@persona.Correo</td>
                     <td>@persona.Telefono</td>
+                    <td>@persona.Clasificacion!.Nombre</td>
                     <td>
                         <button class="btn btn-sm" title="Modificar" @onclick="()=>Modificar(persona.Id)">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">

@@ -36,7 +36,12 @@ namespace Catalogo.Repositorio
 
         public async Task<List<Persona>> GetAll()
         {
-            return await _context.Personas.ToListAsync();
+            return await _context.Personas.Include(c => c.Clasificacion).ToListAsync();
+        }
+
+        public async Task<List<Clasificacion>> GetClasificaciones()
+        {
+            return await _context.Clasificaciones.ToListAsync();
         }
 
         public async Task Update(int id, Persona persona)
